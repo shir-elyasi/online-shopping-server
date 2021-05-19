@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <%- include('../partials/_navbar') -%>
+
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">EmployeeID</th>
+          <th scope="col">Image</th>
+          <th scope="col">FirstName</th>
+          <th scope="col">LastName</th>
+          <th scope="col">Title</th>
+          <th class="d-print-none">
+            <a class="btn btn-sm btn-success" href="/employees/add">Add Employee</a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% employees.forEach(function(employee){ %>
+         <tr>
+           <th scope="row"><%= employee.EmployeeID %></th>
+           <td><img src="https://randomuser.me/api/portraits/men/<%=employee.EmployeeID%>.jpg"
+               alt="<%= employee.FirstName %>" /></td>
+           <td><%= employee.FirstName %></td>
+           <td><%= employee.LastName %></td>
+           <td><%= employee.Title %></td>
+           <td class="d-print-none">
+              <a class="btn btn-sm btn-warning" href="/employees/<%= employee.EmployeeID %>/edit">Edit</a>
+              <a class="btn btn-sm btn-danger delete-button" href="/employees/<%= employee.EmployeeID %>/delete">Delete</a>
+           </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+</body>
+
+</html>
